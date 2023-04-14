@@ -14,6 +14,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      matrix:
+        NOTIFIER_VERSION: [0.1.0]
 
     steps:
       - name: Checkout repository
@@ -37,5 +40,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ matrix.NOTIFIER_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
