@@ -4,6 +4,6 @@ RUN pip install flask discordwebhook
 
 WORKDIR ./app
 
-COPY main.py discord_notify.py email_notify.py ./
+COPY main.py ./
 
 CMD python -u main.py

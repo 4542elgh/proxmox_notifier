@@ -1,0 +1,7 @@
+services:
+  notifier:
+    image: ghcr.io/4542elgh/proxmox_notifier:0.1.0 # Please pin to a specific version
+    env_file:
+      - .env
+    ports:
+      - "88:88"

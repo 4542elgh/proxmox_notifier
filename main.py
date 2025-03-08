@@ -1,6 +1,5 @@
 from flask import Flask, request
 import os
-import json
 
 from discordwebhook import Discord
 
@@ -16,11 +15,11 @@ def main():
             except KeyError:
                 return 'payload/channel not provided', 400
 
-            dc_keys = json.load(open(os.path.join("/run/secrets", "dc_webhook-pass"), encoding="utf-8"))
+            dc_keys = {k: v for k, v in dict(os.environ).items() if "_dc" in k}
 
             if channel+"_dc" in dc_keys.keys():
-                discord = Discord(url=dc_keys[channel+"_dc"])
-                discord.post(content=payload)
+                discord = Discord(url = dc_keys[channel+"_dc"])
+                discord.post(content = payload)
                 return "Notification sent to Discord channel", 200
             else:
                 return "Invalid Method", 400

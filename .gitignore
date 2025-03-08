@@ -1,1 +1,2 @@
-dc_webhook-pass.json
+.env
+venv/*
